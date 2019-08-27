@@ -9,7 +9,7 @@ def index(request):
 
 def projects(request):
     """all projects page"""
-    projects = Project.objects.order_by('finished_time')
+    projects = Project.objects.order_by('date_add')
     context = {'projects':projects}
     return render(request,'PM/projects.html',context)
 
@@ -22,9 +22,9 @@ def new_project(request):
         temp_year = request.POST.get('year')
         temp_month = request.POST['month']
         temp_day = request.POST['day']
-        """
         from django.utils import timezone
-        temp_project = Project(name=request.POST.get('name'), author=request.POST.get('author'), year=request.POST.get('year'), month=request.POST.get('month'), day=request.POST.get('day'), finished_time=timezone.now())
+        """
+        temp_project = Project(name=request.POST.get('name'), author=request.POST.get('author'), year=request.POST.get('year'), month=request.POST.get('month'), day=request.POST.get('day'), state='ing')
         temp_project.save()
 
         return HttpResponseRedirect(reverse('PM:projects'))
@@ -43,7 +43,7 @@ def renew_project(request, project_id):
     if request.method == 'POST':
     # Second request
         from django.utils import timezone
-        temp_project = Project(name=request.POST.get('name'), author=request.POST.get('author'), year=request.POST.get('year'), month=request.POST.get('month'), day=request.POST.get('day'), finished_time=timezone.now())
+        temp_project = Project(name=request.POST.get('name'), author=request.POST.get('author'), year=request.POST.get('year'), month=request.POST.get('month'), day=request.POST.get('day'), state='ing', finished_time=timezone.now())
         temp_project.save()
 
         Project.objects.filter(id=project_id).delete()
@@ -57,6 +57,7 @@ def finished(request, project_id):
     project = Project.objects.get(id=project_id)
     from django.utils import timezone
     project.finished_time = timezone.now()
+    project.state = 'finished'
     project.save()
     return HttpResponseRedirect(reverse('PM:projects'))
     #return render(request, 'PM/projects.html')

@@ -12,7 +12,8 @@
     <td>Project Name</td>
     <td>Author</td>
     <td>Deadline</td>
-    <td>Finished</td>
+    <td>State</td>
+    <td>Date_added|Date_finished</td>
     <td>Opration</td>
   </tr>
 {% for project in projects %}
@@ -20,7 +21,8 @@
     <td>{{ project.name }}</td>
     <td>{{ project.author }}</td>
     <td>{{ project.year }}/{{ project.month }}/{{ project.day }}</td>
-    <td>{{ project.finished_time }}</td>
+    <td>{{ project.state }}</td>
+    <td>{{ project.finished_time|date:'M d, Y H:i' }}</td>
     
     <td><a href="{% url 'PM:finished' project.id %}">finished</a>/<a href="{% url 'PM:renew_project' project.id %}">renew</a>/<a href="{% url 'PM:del_project' project.id %}">delete</a></td>
     <td>

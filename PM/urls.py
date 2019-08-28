@@ -17,4 +17,6 @@ urlpatterns = [
     url(r'^renew_project/(?P<project_id>\d+)/$', views.renew_project, name='renew_project'),
     # finished
     url(r'^finished/(?P<project_id>\d+)/$', views.finished, name='finished'),
+    # search
+    url(r'^search/$', views.search, name='search'),
 ]

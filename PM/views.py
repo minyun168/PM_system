@@ -61,3 +61,14 @@ def finished(request, project_id):
     project.save()
     return HttpResponseRedirect(reverse('PM:projects'))
     #return render(request, 'PM/projects.html')
+
+def search(request):
+    search_content = request.GET.get('search_key')
+    error_msg = ''
+
+    if not search_content:
+        error_msg = 'Please enter the key word'
+        return render(request, 'PM/errors.html', {'error_msg':error_msg})
+
+    projects = Project.objects.filter(name__icontains=search_content)
+    return render(request, 'PM/search.html', {'error_msg': error_msg, 'projects': projects})

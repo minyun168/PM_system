@@ -1,4 +1,10 @@
+{% extends "PM/base.html" %}
+
+{% block header %}
 <h1>Add new project</h1>
+{% endblock header %}
+
+{% block content %}
 
 <form action="{% url 'PM:new_project' %}" method="post" name="new_project">
   {% csrf_token %}
@@ -11,3 +17,5 @@
   {% csrf_token %}
   <button>cancel</button>
 </form>
+
+{% endblock content %}

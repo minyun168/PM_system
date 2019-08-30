@@ -1,8 +1,16 @@
 {% extends "PM/base.html" %}
 
+{% block header %}
+  <div class='jumbotron'>
+    <h1>Project Management System</h1>
+{% endblock header %}
+
 {% block content %}
-<h1>
-Project management system
-</h1>
+  <h2>
+    <a href="{% url 'users:register' %}">Register an account</a> to make your own projects, and manage your projects you're doing.
+  </h2>
+  <h2>
+    You will feel so lucky when you using this project management system.
+  </h2>
 
 {% endblock content %}

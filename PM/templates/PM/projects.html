@@ -1,17 +1,21 @@
 {% extends "PM/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+<h1>Projects</h1>
+{% endblock header %}
 
 {% block content %}
 
-<h1>Projects</h1>
-<form action="{% url 'PM:new_project' %}" method='get'>
+<p>
+<a style="float:left;" class="btn btn-primary" href="{% url 'PM:new_project' %}" role="button">Add new project</a>
+<form style="" class="form-inline mt-2 mt-md-0" action="{% url 'PM:search' %}" method='get'>
   {% csrf_token %}
-  <button name="submit">add project</button>
+  <input name="search_key" class="form-control mr-sm-2" type="text" placeholder="Project Name" aria-label="Search" required>
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 </form>
-<form action="{% url 'PM:search' %}" method='get'>
-  {% csrf_token %}
-  <input type="search" name="search_key" placeholder="search project's name" required>
-  <button type="submit">search</button>
-</form>
+</p>
+
 <table>
   <tr>
     <td>Project Name</td>
@@ -19,7 +23,7 @@
     <td>Deadline</td>
     <td>State</td>
     <td>Date_added|Date_finished</td>
-    <td>Opration</td>
+    <td>Operation</td>
   </tr>
 {% for project in projects %}
   <tr>
@@ -49,5 +53,30 @@
   </tr>
 {% endfor %}
 </table>
+
+
+<h2>Projects</h2>
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th>name</th>
+        <th>author</th>
+        <th>deadline</th>
+        <th>state</th>
+        <th>date_added</th>
+        <th>date_finished</th>
+        <th>operation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>spring</td>
+      </tr>
+      <tr>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 {% endblock content %}

@@ -1,4 +1,5 @@
 {% extends "PM/base.html" %}
+{% load bootstrap3 %}
 
 {% block header %}
 <h1>Add new project</h1>
@@ -6,16 +7,15 @@
 
 {% block content %}
 
-<form action="{% url 'PM:new_project' %}" method="post" name="new_project">
+<form action="{% url 'PM:new_project' %}" method="post" name="new_project" class="form">
   {% csrf_token %}
   <p><span>Project Name:</span><input type="text" name="name"></p>
   <p><span>Author:</span><input type="text" name="author"></p>
   <p><span>Deadline:</span><input type="text" name="year">/<input type="text" name="month">/<input type="text" name="day"></p>
-  <input type="submit" value="add">
-</form>
-<form action="{% url 'PM:projects' %}" method='get'>
-  {% csrf_token %}
-  <button>cancel</button>
+<div style="float:left;">
+  <button name="submit" class="btn btn-primary">add</button>
+  <a href="{% url 'PM:projects' %}" class="btn btn-primary" role="button">cancel</a>
+</div>
 </form>
 
 {% endblock content %}

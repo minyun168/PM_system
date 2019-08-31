@@ -11,11 +11,11 @@
   <p><span>Project Name:</span><input type="text" name="name" value="{{ project.name }}"></p>
   <p><span>Author:</span><input type="text" name="author" value="{{ project.author }}"></p>
   <p><span>Deadline:</span><input type="text" name="year" value="{{ project.year }}">/<input type="text" name="month" value="{{ project.month }}">/<input type="text" name="day" value="{{ project.day }}"></p>
-  <input type="submit" value="renew">
-</form>
-<form action="{% url 'PM:projects' %}" method='get'>
-  {% csrf_token %}
-  <button>cancel</button>
+
+<div style="float:left;">
+  <input class="btn btn-primary" type="submit" value="renew">
+  <a href="{% url 'PM:projects' %}" method='get' class="btn btn-primary" role="button">cancel</a>
+</div>
 </form>
 
 {% endblock content %}

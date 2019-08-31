@@ -1,59 +1,41 @@
 {% extends "PM/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+<h1>Search Result</h1>
+{% endblock header %}
 
 {% block content %}
-{% if error_msg %}
-    <p>{{ error_msg }}</p>
-{% endif %}
 
-<h1>Projects</h1>
-<!--
-<form action="{% url 'PM:new_project' %}" method='get'>
-  {% csrf_token %}
-  <button name="submit">add project</button>
-</form>
-<form action="{% url 'PM:search' %}" method='get'>
-  {% csrf_token %}
-  <input type="search" name="search_key" placeholder="search project's name" required>
-  <button type="submit">search</button>
-</form>
--->
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th>name</th>
+        <th>author</th>
+        <th>deadline</th>
+        <th>state</th>
+        <th>date_added</th>
+        <th>date_finished</th>
+        <th>operation</th>
+      </tr>
+    </thead>
+    <tbody>
 
-<table>
-  <tr>
-    <td>Project Name</td>
-    <td>Author</td>
-    <td>Deadline</td>
-    <td>State</td>
-    <td>Date_added|Date_finished</td>
-    <td>Opration</td>
-  </tr>
 {% for project in projects %}
   <tr>
     <td>{{ project.name }}</td>
     <td>{{ project.author }}</td>
     <td>{{ project.year }}/{{ project.month }}/{{ project.day }}</td>
     <td>{{ project.state }}</td>
+    <td>{{ project.date_add|date:'M d, Y H:i' }}</td>
     <td>{{ project.finished_time|date:'M d, Y H:i' }}</td>
     
-    <td><a href="{% url 'PM:finished' project.id %}">finished</a>/<a href="{% url 'PM:renew_project' project.id %}">renew</a>/<a href="{% url 'PM:del_project' project.id %}">delete</a></td>
-    <td>
-    <script language="javascript">
-      function del(){
-        if(confirm("This project will be deleted, are you sure?")){
-          window.location.href="{% url 'PM:del_project' project.id %}";
-          }
-        }
-      function finished(){
-        window.location.href="{% url 'PM:finished' project.id %}";
-      }
-    </script>
-    <form>
-    <input type="button" value="delete" onclick="del()">
-    <input type="button" value="finished" onclick="finished()">
-    </form>
-    </td>
-  </tr>
-{% endfor %}
-</table>
+    <td><a href="{% url 'PM:finished' project.id %}" class="btn btn-info" role="button">finished</a><a href="{% url 'PM:renew_project' project.id %}" class="btn btn-warning" role="button">renew</a><a href="{% url 'PM:del_project' project.id %}" class="btn btn-danger" role="button">delete</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 
 {% endblock content %}

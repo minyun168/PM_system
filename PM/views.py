@@ -32,9 +32,13 @@ def new_project(request):
     return render(request, 'PM/new_project.html')
 
 def del_project(request, project_id):
-    #ProjectID = request.project_id
-    Project.objects.filter(id=project_id).delete()
-    return HttpResponseRedirect(reverse('PM:projects'))
+    project = Project.objects.get(id=project_id)
+    context ={'project':project}
+    if request.method == 'POST':
+        Project.objects.filter(id=project_id).delete()
+        return HttpResponseRedirect(reverse('PM:projects'))
+    
+    return render(request, 'PM/del_project.html', context)
 
 def renew_project(request, project_id):
     """Let you renew the project"""

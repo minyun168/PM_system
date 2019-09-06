@@ -24,7 +24,7 @@ def new_project(request):
         temp_day = request.POST['day']
         from django.utils import timezone
         """
-        temp_project = Project(name=request.POST.get('name'), author=request.POST.get('author'), year=request.POST.get('year'), state='ing')
+        temp_project = Project(name=request.POST.get('name'), author=request.POST.get('author'), deadline=request.POST.get('deadline'), state='ing')
         temp_project.save()
 
         return HttpResponseRedirect(reverse('PM:projects'))
@@ -47,7 +47,7 @@ def renew_project(request, project_id):
     if request.method == 'POST':
     # Second request
         from django.utils import timezone
-        temp_project = Project(name=request.POST.get('name'), author=request.POST.get('author'), year=request.POST.get('year'), state='ing', finished_time=timezone.now())
+        temp_project = Project(name=request.POST.get('name'), author=request.POST.get('author'), deadline=request.POST.get('deadline'), state='ing', finished_time=timezone.now())
         temp_project.save()
 
         Project.objects.filter(id=project_id).delete()

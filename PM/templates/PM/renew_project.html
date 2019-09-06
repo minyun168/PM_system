@@ -10,7 +10,7 @@
   {% csrf_token %}
   <p><span>Project Name:</span><input type="text" name="name" value="{{ project.name }}"></p>
   <p><span>Author:</span><input type="text" name="author" value="{{ project.author }}"></p>
-  <p><span>Deadline:</span><input type="text" name="year" value="{{ project.year }}">/<input type="text" name="month" value="{{ project.month }}">/<input type="text" name="day" value="{{ project.day }}"></p>
+  <p><span>Deadline:</span><input type="date" name="year" value="{{ project.year }}"></p>
 
 <div style="float:left;">
   <input class="btn btn-warning" type="submit" value="renew">

@@ -11,7 +11,7 @@
   {% csrf_token %}
   <p><span>Project Name:</span><input type="text" name="name"></p>
   <p><span>Author:</span><input type="text" name="author"></p>
-  <p><span>Deadline:</span><input type="text" name="year">/<input type="text" name="month">/<input type="text" name="day"></p>
+  <p><span>Deadline:</span><input type="date" name="year"></p>
 <div style="float:left;">
   <button name="submit" class="btn btn-primary">add</button>
   <a href="{% url 'PM:projects' %}" class="btn btn-primary" role="button">cancel</a>

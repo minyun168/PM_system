@@ -4,8 +4,6 @@ class Project(models.Model):
     name = models.CharField(max_length=200)
     author = models.CharField(max_length=100)
     year = models.CharField(max_length=100)
-    month = models.CharField(max_length=100)
-    day = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
     finished_time = models.DateTimeField(auto_now_add=True)
     date_add = models.DateTimeField(auto_now_add=True)
